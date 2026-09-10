@@ -6,59 +6,70 @@
 
 <?= $this->section('content') ?>
 <section class="screen admin-add-warga-screen">
-  <div class="page-title">
+  <div class="page-title-wrap">
     <div>
-      <small>TAMBAH WARGA</small>
-      <h1>Pendaftaran Peserta Baru</h1>
-      <p>Masukkan data warga untuk mendaftarkan peserta qurban baru.</p>
+      <span class="badge-role">PENDAFTARAN</span>
+      <h1>Tambah Peserta Qurban</h1>
+      <p>Masukkan data warga yang ingin ikut serta dalam program tabungan qurban.</p>
     </div>
-    <button type="button" onclick="window.location.href='<?= base_url('admin/members') ?>'" class="outline">Kembali</button>
+    <a href="<?= base_url('admin/members') ?>" class="btn-secondary-action">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span>Kembali ke Data Warga</span>
+    </a>
   </div>
 
-  <article class="card form-card">
+  <article class="card form-card-wrap">
     <?php if (!empty($errorMsg)): ?>
-      <div style="background: #fee; color: #c00; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
-        <?= esc($errorMsg) ?>
+      <div class="alert-box alert-error">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span><?= esc($errorMsg) ?></span>
       </div>
     <?php endif; ?>
 
-    <form method="POST" action="<?= base_url('admin/members/add') ?>">
-      <div class="form-grid" style="display: flex; flex-direction: column; gap: 15px; max-width: 600px;">
+    <form method="POST" action="<?= base_url('admin/members/add') ?>" class="modern-form">
+      <?= csrf_field() ?>
+      
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label for="nama_lengkap">Nama Lengkap Warga</label>
+          <input type="text" id="nama_lengkap" name="nama_lengkap" required placeholder="Contoh: Ahmad Syafi'i" class="form-control">
+          <small class="form-hint">Kata pertama akan dipakai sebagai username akun.</small>
+        </div>
         
-        <label style="display:flex; flex-direction:column; gap:5px; font-weight:600;">
-          Nama Lengkap <small style="font-weight:normal; color:var(--muted);">(Kata pertama akan jadi username, password default adalah username+123)</small>
-          <input type="text" name="nama_lengkap" required placeholder="Contoh: Ahmad Syafi'i" style="padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff;">
-        </label>
-        
-        <label style="display:flex; flex-direction:column; gap:5px; font-weight:600;">
-          Nomor HP
-          <input type="text" name="no_hp" required placeholder="Contoh: 081234567890" style="padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff;">
-        </label>
-        
-        <label style="display:flex; flex-direction:column; gap:5px; font-weight:600;">
-          RT / RW
-          <input type="text" name="rt_rw" required placeholder="Contoh: RT 04" style="padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff;">
-        </label>
-
-        <label style="display:flex; flex-direction:column; gap:5px; font-weight:600;">
-          Jenis Qurban
-          <select name="jenis_qurban" id="jenis_qurban" required onchange="updateTarget()" style="padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff;">
-            <option value="">-- Pilih Jenis Qurban --</option>
-            <option value="Sapi Kolektif" data-target="12500000">Sapi Kolektif</option>
-            <option value="Kambing" data-target="3500000">Kambing</option>
-            <option value="Sapi Utuh" data-target="25000000">Sapi Utuh</option>
-          </select>
-        </label>
-
-        <label style="display:flex; flex-direction:column; gap:5px; font-weight:600;">
-          Target Qurban (Rp)
-          <input type="number" name="target_qurban" id="target_qurban" required placeholder="Pilih jenis qurban terlebih dahulu" style="padding:10px; border:1px solid #ccc; border-radius:6px; background:#fff;">
-        </label>
-
+        <div class="form-group">
+          <label for="no_hp">Nomor HP atau WhatsApp</label>
+          <input type="text" id="no_hp" name="no_hp" required placeholder="Contoh: 081234567890" class="form-control">
+          <small class="form-hint">Untuk kontak pengingat dan konfirmasi setoran.</small>
+        </div>
       </div>
 
-      <div style="margin-top: 25px;">
-        <button type="submit" class="btn" style="background:#0e603a; color:#fff; padding:12px 24px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">Simpan Data Warga</button>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label for="rt_rw">Wilayah RT / RW</label>
+          <input type="text" id="rt_rw" name="rt_rw" required placeholder="Contoh: RT 04" value="RT 04" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="jenis_qurban">Pilihan Hewan Qurban</label>
+          <select name="jenis_qurban" id="jenis_qurban" required onchange="updateTarget()" class="form-control">
+            <option value="">Pilih Jenis Hewan</option>
+            <option value="Sapi Kolektif" data-target="12500000">Sapi Kolektif (Patungan 1/7) - Rp12.500.000</option>
+            <option value="Kambing" data-target="3500000">Kambing atau Domba - Rp3.500.000</option>
+            <option value="Sapi Utuh" data-target="25000000">Sapi Utuh - Rp25.000.000</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="target_qurban">Target Biaya Tabungan (Rp)</label>
+        <input type="number" name="target_qurban" id="target_qurban" required placeholder="Pilih hewan qurban di atas" class="form-control" style="font-weight:700; font-size:16px;">
+        <small class="form-hint">Target nominal dapat disesuaikan manual bila terdapat kesepakatan harga khusus.</small>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">
+          <span>Simpan Data Peserta</span>
+        </button>
       </div>
     </form>
   </article>

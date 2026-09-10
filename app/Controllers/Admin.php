@@ -91,7 +91,7 @@ class Admin extends BaseController
         }
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Dashboard Admin",
+            'pageTitle' => "AT-TAQWA | Panel Pengurus",
             'totalDana' => $totalDana,
             'totalWarga' => $totalWarga,
             'wargaAktif'=> $wargaStat->aktif ?? 0, // Ditambahkan
@@ -136,7 +136,7 @@ class Admin extends BaseController
         $members = $builder->get()->getResultArray();
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Data Warga",
+            'pageTitle' => "AT-TAQWA | Data Warga",
             'members' => $members,
             'q' => $q,
             'status' => $status
@@ -147,7 +147,7 @@ class Admin extends BaseController
 
     public function addMember()
     {
-        $data = ['pageTitle' => "AT-TAQWA — Tambah Warga"];
+        $data = ['pageTitle' => "AT-TAQWA | Tambah Warga"];
 
         if ($this->request->getMethod() === 'POST' || $this->request->getMethod() === 'post') {
             $nama_lengkap = trim($this->request->getPost('nama_lengkap') ?? '');
@@ -317,7 +317,7 @@ class Admin extends BaseController
         $wargaAktif = $db->table('warga')->where('status', 'Aktif')->countAllResults();
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Laporan Keuangan Qurban",
+            'pageTitle' => "AT-TAQWA | Laporan Keuangan",
             'totalDanaMasuk' => $totalDanaMasuk,
             'totalTransaksi' => $totalTransaksi,
             'totalTarget' => $totalTarget,

@@ -15,13 +15,12 @@ class Home extends BaseController
                        ->get()->getRowArray();
         $totalDanaMasuk = $resMasuk['total'] ?? 0;
 
-        // 2. Jumlah Warga (Aktif & Lunas) & Total Target
+        // 2. Jumlah Warga (Total Terdaftar) & Total Target
+        $totalWargaAll = $db->table('warga')->countAllResults();
         $resWarga = $db->table('warga')
-                       ->selectCount('id_warga', 'jml_warga')
                        ->selectSum('target_qurban', 'total_target')
-                       ->whereIn('status', ['Aktif', 'Lunas'])
                        ->get()->getRowArray();
-        $jmlWarga = $resWarga['jml_warga'] ?? 0;
+        $jmlWarga = $totalWargaAll;
         $totalTarget = $resWarga['total_target'] ?? 0;
 
         // 3. Estimasi Target Tercapai (Bulan)
@@ -51,7 +50,7 @@ class Home extends BaseController
         }
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Tabungan Qurban Warga",
+            'pageTitle' => "AT-TAQWA | Tabungan Qurban Warga",
             'totalDanaMasuk' => $totalDanaMasuk,
             'jmlWarga' => $jmlWarga,
             'estimasiBulanStr' => $estimasiBulanStr

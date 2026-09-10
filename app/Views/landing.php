@@ -3,367 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($pageTitle ?? 'AT-TAQWA — Tabungan Qurban') ?></title>
+    <title><?= esc($pageTitle ?? 'AT-TAQWA | Tabungan Qurban Warga') ?></title>
     <link rel="icon" type="image/x-icon" href="<?= base_url('favicon.ico?v=3') ?>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --landing-green: #0e603a;
-            --landing-light: #f4fbf5;
-        }
-        body {
-            margin: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #fff;
-            color: #333;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        /* Navbar */
-        .landing-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 1px 15px rgba(0,0,0,0.04);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .landing-nav .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--landing-green);
-        }
-        .landing-nav .logo {
-            width: 45px;
-            height: auto;
-            margin-right: 12px;
-        }
-        .landing-nav h1 {
-            margin: 0;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-        .landing-nav .login-btn {
-            background: var(--landing-green);
-            color: #fff;
-            padding: 10px 24px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        .landing-nav .login-btn:hover {
-            background: #0a472a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(14, 96, 58, 0.2);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 60px 5% 60px;
-            text-align: center;
-            background: linear-gradient(135deg, var(--landing-light) 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: "☪";
-            position: absolute;
-            font-size: 400px;
-            color: var(--landing-green);
-            opacity: 0.02;
-            top: -50px;
-            right: -100px;
-            z-index: 0;
-            transform: rotate(-15deg);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero-badge {
-            background: rgba(14, 96, 58, 0.1);
-            color: var(--landing-green);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-        }
-        .hero h2 {
-            font-size: 56px;
-            font-weight: 900;
-            line-height: 1.15;
-            color: #111;
-            margin: 0 0 24px;
-            letter-spacing: -1px;
-        }
-        .hero h2 span {
-            color: var(--landing-green);
-        }
-        .hero p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .hero .cta-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-        .hero .btn-primary {
-            background: var(--landing-green);
-            color: #fff;
-            padding: 16px 36px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(14,96,58,0.25);
-        }
-        .hero .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(14,96,58,0.35);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            padding: 0 5% 100px;
-            background: #fff;
-            position: relative;
-            z-index: 2;
-            margin-top: -40px;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .stat-card {
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 0; right: 0; height: 5px;
-            background: var(--landing-green);
-            opacity: 0;
-            transition: 0.3s;
-            transform: scaleX(0);
-        }
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(14,96,58,0.08);
-            border-color: transparent;
-        }
-        .stat-card:hover::after {
-            opacity: 1;
-            transform: scaleX(1);
-        }
-        .stat-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--landing-light);
-            color: var(--landing-green);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            margin: 0 auto 24px;
-        }
-        .stat-value {
-            font-size: 40px;
-            font-weight: 800;
-            color: #111;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-        .stat-label {
-            font-size: 16px;
-            color: #666;
-            font-weight: 500;
-        }
-        
-        /* Simulator CSS inside Hero */
-        .sim-form {
-            background: #fff;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(14,96,58,0.1);
-            border: 1px solid #f0f0f0;
-        }
-        .sim-form label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 13px;
-            color: #333;
-        }
-        .sim-form select, .sim-form input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #ccc;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-size: 15px;
-            font-family: inherit;
-            box-sizing: border-box;
-            background: #fafafa;
-            transition: 0.3s;
-        }
-        .sim-form select {
-            appearance: none;
-            -webkit-appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 14px;
-            padding-right: 40px;
-        }
-        .sim-form select:focus, .sim-form input:focus {
-            border-color: var(--landing-green);
-            outline: none;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(14,96,58,0.1);
-        }
-        .sim-result {
-            background: var(--landing-green);
-            color: #fff;
-            padding: 15px;
-            border-radius: 16px;
-            text-align: center;
-        }
-        .sim-result span {
-            display: block;
-            font-size: 13px;
-            opacity: 0.9;
-            margin-bottom: 4px;
-        }
-        .sim-result b {
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        /* Footer */
-        .footer {
-            background: #fafafa;
-            padding: 40px 5%;
-            text-align: center;
-            border-top: 1px solid #eaeaea;
-            color: #777;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .hero h2 { font-size: 40px; }
-            .hero p { font-size: 16px; }
-            .hero { padding: 80px 5% 60px; }
-            .stats-section { margin-top: 0; padding-top: 40px; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles.css?v=<?= time() ?>">
 </head>
-<body>
+<body class="landing-body">
 
-    <nav class="landing-nav">
-        <a href="<?= base_url() ?>" class="brand">
-            <img src="<?= base_url('img/logo.png?v=' . time()) ?>" alt="Logo AT-TAQWA" class="logo">
-            <h1>AT-TAQWA</h1>
-        </a>
-        <a href="<?= base_url('login') ?>" class="login-btn">Masuk Portal</a>
-    </nav>
+    <!-- Sticky Navigation Bar -->
+    <nav class="landing-navbar">
+        <div class="landing-nav-container">
+            <a href="<?= base_url() ?>" class="brand">
+                <img src="<?= base_url('img/logo.png?v=' . time()) ?>" alt="Logo AT-TAQWA" class="logo">
+                <div class="brand-text">
+                    <b class="brand-title">AT-TAQWA</b>
+                    <small class="brand-sub">Tabungan Qurban Warga</small>
+                </div>
+            </a>
 
-    <header class="hero">
-        <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; text-align: left; position: relative; z-index: 1;">
-            <div class="hero-info">
-                <div class="hero-badge">Program Tabungan Qurban Warga</div>
-                <h2 style="font-size:42px;">Siapkah Anda Qurban Tahun <span><?= date('Y') + 1 ?></span>?</h2>
-                <p>Sistem transparansi dan pengelolaan tabungan qurban untuk masyarakat umum. Mari bersama wujudkan niat berqurban dengan lebih terencana, aman, dan barokah.</p>
+            <div class="landing-nav-links">
+                <a href="#alur">Cara Kerja</a>
+                <a href="#pilihan-hewan">Pilihan Hewan</a>
+                <a href="#amanah">Prinsip Kas</a>
+                <a href="#faq">Tanya Jawab</a>
             </div>
             
-            <div class="sim-form" style="margin:0; box-shadow: 0 20px 50px rgba(14,96,58,0.15);">
-                <h3 style="margin-top:0; margin-bottom: 20px; text-align: center; font-size: 22px; color: #111;">Kalkulator Qurban</h3>
-                
-                <label>Pilih Target Qurban</label>
-                <select id="simTarget" onchange="hitungSimulasi()">
-                    <option value="3500000" selected>Sapi Patungan (1/7) - Rp3.500.000</option>
-                    <option value="3000000">Kambing/Domba - Rp3.000.000</option>
-                    <option value="25000000">Sapi Utuh (Kolektif) - Rp25.000.000</option>
-                </select>
+            <div class="landing-nav-actions">
+                <a href="<?= base_url('login') ?>" class="btn-portal">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                    <span>Masuk Akun</span>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-                <label>Rencana Dicapai Dalam (Bulan)</label>
-                <div style="display:flex; gap: 10px; margin-bottom: 20px;">
-                    <input type="number" id="simBulan" value="10" min="1" max="60" oninput="hitungSimulasi()" style="margin-bottom:0;">
+    <!-- Hero Section with Thematic Photographic Backdrop -->
+    <header class="hero-landing">
+        <div class="hero-container">
+            <div class="hero-info">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Kas Tabungan Qurban Lingkungan</span>
+                </div>
+                <h1>Persiapan Qurban Warga Jadi <span>Tenang dan Terencana</span>.</h1>
+                <p>Nabung santai per bulan, catatan kas transparan di lingkungan RT, dan hewan qurban siap disembelih bersama saat Hari Raya Iduladha tiba.</p>
+                
+                <div class="hero-quick-features">
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        <span>Nominal setoran fleksibel sesuai kemampuan bulanan</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        <span>Pencatatan kas terbuka, bisa dicek tiap warga kapan saja</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        <span>Dikelola langsung oleh pengurus RT dan panitia masjid</span>
+                    </div>
                 </div>
 
-                <div class="sim-result">
-                    <span>Maka Anda cukup menabung:</span>
-                    <b id="simHasil">Rp 350.000 / Bulan</b>
+                <div class="hero-cta-group">
+                    <a href="#kalkulator" class="btn-hero-primary">
+                        <span>Hitung Rencana Tabungan</span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="#alur" class="btn-hero-glass">
+                        <span>Lihat Alur Program</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Glassmorphic Interactive Calculator -->
+            <div class="calc-card" id="kalkulator">
+                <div class="calc-header">
+                    <div class="calc-icon">🧮</div>
+                    <div>
+                        <h3>Hitung Perkiraan Setoran</h3>
+                        <small>Simulasi rencana tabungan per bulan</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pilihan Hewan Qurban</label>
+                    <div class="animal-tabs">
+                        <button type="button" class="animal-tab active" onclick="selectAnimal(3500000, this)">Patungan Sapi</button>
+                        <button type="button" class="animal-tab" onclick="selectAnimal(3000000, this)">Kambing</button>
+                        <button type="button" class="animal-tab" onclick="selectAnimal(25000000, this)">Sapi Utuh</button>
+                    </div>
+                    <input type="hidden" id="simTarget" value="3500000">
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="simBulan">Rencana Waktu Nabung</label>
+                        <span class="range-value"><b id="labelBulan">10</b> Bulan</span>
+                    </div>
+                    <input type="range" id="simBulan" min="1" max="24" value="10" oninput="document.getElementById('labelBulan').innerText = this.value; hitungSimulasi();" class="range-slider">
+                    <div class="range-steps">
+                        <span>1 bulan</span>
+                        <span>12 bulan</span>
+                        <span>24 bulan</span>
+                    </div>
+                </div>
+
+                <div class="calc-result-box">
+                    <span class="result-label">Perkiraan setoran rutin:</span>
+                    <strong class="result-value" id="simHasil">Rp350.000 / bulan</strong>
+                    <small class="result-note">Bisa setor tunai ke pengurus RT atau transfer Bank BSI</small>
                 </div>
                 
-                <div style="margin-top: 20px; text-align: center; display: flex; flex-direction: column; gap: 10px;">
-                    <a href="<?= base_url('login') ?>" class="btn-primary" style="display:block; text-align:center;">Mulai Menabung Sekarang</a>
-                    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20TAQWA,%20saya%20tertarik%20menggunakan%20aplikasi%20ini%20untuk%20komunitas%20saya" target="_blank" style="display:block; text-align:center; padding: 12px; color: var(--landing-green); font-weight: 600; text-decoration: none; border: 2px solid var(--landing-green); border-radius: 30px; transition: 0.3s;" onmouseover="this.style.background='var(--landing-green)'; this.style.color='#fff';" onmouseout="this.style.background='transparent'; this.style.color='var(--landing-green)';">Konsultasi via WhatsApp</a>
+                <div class="calc-actions">
+                    <a href="<?= base_url('login') ?>" class="btn-primary-block">
+                        <span>Mulai Menabung Sekarang</span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Pengurus%20AT-TAQWA,%20saya%20ingin%20tanya%20seputar%20tabungan%20qurban" target="_blank" rel="noopener" class="btn-outline-block">
+                        <span>Tanya Pengurus via WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="stats-section" style="margin-top: -40px; padding-top: 80px; position:relative; z-index:2;">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">👥</div>
-                <div class="stat-value"><?= number_format($jmlWarga, 0, ',', '.') ?></div>
-                <div class="stat-label">Warga Terdaftar</div>
+    <!-- Floating Live Transparency Stats Counter -->
+    <div class="floating-stats-wrapper">
+        <div class="floating-stats-card">
+            <div class="floating-stat-item">
+                <div class="f-icon">👥</div>
+                <div class="f-content">
+                    <b><?= number_format($jmlWarga, 0, ',', '.') ?> Warga</b>
+                    <span>Peserta Terdaftar</span>
+                </div>
             </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">💰</div>
-                <div class="stat-value">Rp<?= number_format($totalDanaMasuk, 0, ',', '.') ?></div>
-                <div class="stat-label">Total Tabungan Terkumpul</div>
+
+            <div class="floating-stat-item">
+                <div class="f-icon">💰</div>
+                <div class="f-content">
+                    <b>Rp<?= number_format($totalDanaMasuk, 0, ',', '.') ?></b>
+                    <span>Dana Kas Terverifikasi</span>
+                </div>
             </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">🗓️</div>
-                <div class="stat-value" style="font-size:32px;"><?= esc($estimasiBulanStr) ?></div>
-                <div class="stat-label">Estimasi Target Tercapai</div>
+
+            <div class="floating-stat-item">
+                <div class="f-icon">🎯</div>
+                <div class="f-content">
+                    <b>4 Target Lunas</b>
+                    <span>Siap Disembelih</span>
+                </div>
+            </div>
+
+            <div class="floating-stat-item">
+                <div class="f-icon">🛡️</div>
+                <div class="f-content">
+                    <b>100% Terbuka</b>
+                    <span>Catatan Kas Transparan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: 3 Langkah Alur Kerja -->
+    <section class="steps-section" id="alur">
+        <div class="steps-container">
+            <div class="section-header-center">
+                <span class="section-tag">ALUR SEDERHANA</span>
+                <h2>Cara Mudah Ikut Tabungan Qurban Warga</h2>
+                <p>Prosedur jelas tanpa syarat berbelit. Semua tercatat transparan dari pendaftaran awal hingga hari penyembelihan.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>Pilih Hewan dan Target Waktu</h3>
+                    <p>Pilih jenis hewan qurban yang diinginkan, baik patungan sapi 1/7 bagian maupun kambing mandiri. Tentukan rencana bulan menabung sesuai kemampuan.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Setor Rutin Tiap Bulan</h3>
+                    <p>Lakukan setoran melalui transfer Bank BSI resmi panitia atau serahkan tunai langsung ke pengurus RT. Konfirmasi setoran akan muncul di akun Anda.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>Hewan Dibeli dan Disembelih Bersama</h3>
+                    <p>Menjelang Iduladha, panitia membeli hewan sehat sesuai syariat dari peternak terpercaya. Penyembelihan dan pembagian daging dinikmati bersama warga.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        &copy; <?= date('Y') ?> AT-TAQWA (Tabungan Qurban Warga). Hak Cipta Dilindungi.
+    <!-- Section: Pilihan Hewan Qurban -->
+    <section class="pricing-section" id="pilihan-hewan">
+        <div class="pricing-container">
+            <div class="section-header-center">
+                <span class="section-tag">PILIHAN HEWAN</span>
+                <h2>Estimasi Biaya Qurban Tahun 1448 H</h2>
+                <p>Harga acuan peternak lokal yang wajar dan realistis, tanpa biaya potongan tersembunyi.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Sapi Patungan -->
+                <div class="pricing-card pricing-popular">
+                    <span class="popular-badge">Paling Diminati</span>
+                    <div>
+                        <div class="pricing-header">
+                            <h3>Sapi Patungan (1/7)</h3>
+                            <p class="pricing-desc">Kolektif 7 orang warga untuk 1 ekor sapi</p>
+                        </div>
+                        <div class="pricing-cost">
+                            <b>Rp3.500.000</b>
+                            <span>Mulai Rp350.000 / bulan (10 bln)</span>
+                        </div>
+                        <ul class="pricing-specs">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bobot sapi hidup ±300 kg</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Satu bagian atas nama 1 orang</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Operasional pemotongan ditanggung bersama</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="<?= base_url('login') ?>" class="btn-primary-block">Pilih Patungan Sapi</a>
+                </div>
+
+                <!-- Kambing Mandiri -->
+                <div class="pricing-card">
+                    <div>
+                        <div class="pricing-header">
+                            <h3>Kambing atau Domba</h3>
+                            <p class="pricing-desc">Qurban perorangan dengan hewan mandiri</p>
+                        </div>
+                        <div class="pricing-cost">
+                            <b>Rp3.000.000</b>
+                            <span>Mulai Rp300.000 / bulan (10 bln)</span>
+                        </div>
+                        <ul class="pricing-specs">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bobot hidup berkisar 25 sampai 30 kg</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Hewan jantan sehat dan cukup umur</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bisa request bagian daging tertentu</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="<?= base_url('login') ?>" class="btn-outline-block">Pilih Kambing</a>
+                </div>
+
+                <!-- Sapi Utuh Keluarga -->
+                <div class="pricing-card">
+                    <div>
+                        <div class="pricing-header">
+                            <h3>Sapi Utuh Keluarga</h3>
+                            <p class="pricing-desc">Satu ekor sapi utuh atas nama keluarga besar</p>
+                        </div>
+                        <div class="pricing-cost">
+                            <b>Rp25.000.000</b>
+                            <span>Mulai Rp2.500.000 / bulan (10 bln)</span>
+                        </div>
+                        <ul class="pricing-specs">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Bobot sapi hidup ±350 sampai 400 kg</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Mencakup hingga 7 nama keluarga</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Prioritas jadwal dan penanganan khusus</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="<?= base_url('login') ?>" class="btn-outline-block">Pilih Sapi Utuh</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Nilai Amanah Kas Lingkungan -->
+    <section class="trust-section" id="amanah">
+        <div class="trust-container">
+            <div class="section-header-center">
+                <span class="section-tag">AMANAH DAN TERBUKA</span>
+                <h2>Prinsip Pengelolaan Tabungan Lingkungan</h2>
+                <p>Ibadah qurban adalah amanah besar. Kami mengedepankan ketenangan warga lewat tata kelola kas yang rapi.</p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <span class="t-icon">📊</span>
+                    <h3>Pencatatan Kas Real-Time</h3>
+                    <p>Setiap nominal yang Anda setorkan langsung diverifikasi dan dapat dipantau riwayatnya secara transparan melalui portal warga.</p>
+                </div>
+
+                <div class="trust-card">
+                    <span class="t-icon">🚫</span>
+                    <h3>Tanpa Potongan Siluman</h3>
+                    <p>Dana tabungan 100% dialokasikan murni untuk pembelian hewan dan operasional qurban warga tanpa potongan biaya administrasi tersembunyi.</p>
+                </div>
+
+                <div class="trust-card">
+                    <span class="t-icon">🤝</span>
+                    <h3>Dikelola Tetangga Sendiri</h3>
+                    <p>Pengurus kas adalah pengurus RT dan panitia kurban masjid lingkungan yang bertetangga dekat, mudah ditemui, dan dapat diajak berdiskusi setiap saat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: FAQ Tanya Jawab Warga -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-header-center">
+                <span class="section-tag">PERTANYAAN LAZIM</span>
+                <h2>Tanya Jawab Seputar Tabungan Qurban</h2>
+                <p>Jawaban praktis untuk hal-hal yang sering ditanyakan warga sebelum mulai menabung.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Bagaimana jika ada kebutuhan mendesak sebelum Iduladha?</h3>
+                    <p>Dana tabungan sepenuhnya adalah hak milik warga. Jika mengalami keadaan darurat keluarga, silakan koordinasikan langsung dengan pengurus kas RT untuk solusi terbaik.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Kapan batas waktu pelunasan tabungan qurban?</h3>
+                    <p>Pelunasan ditargetkan selesai paling lambat satu bulan sebelum Hari Raya Iduladha agar panitia leluasa memilih dan memesan hewan sehat terbaik langsung dari peternak.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Bolehkah menyetor lebih besar dari cicilan bulanan?</h3>
+                    <p>Sangat diperbolehkan. Nominal setoran bersifat fleksibel. Saat warga memiliki kelapangan rezeki, setoran lebih besar akan mempercepat tercapainya target qurban.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Bagaimana cara menyetor dana tabungan?</h3>
+                    <p>Warga dapat mentransfer ke rekening resmi Bank Syariah Indonesia (BSI) panitia atau menyerahkan uang tunai langsung ke bendahara RT pada saat pertemuan warga.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Banner -->
+    <section class="final-cta-section">
+        <div class="cta-banner">
+            <div class="cta-banner-content">
+                <h2>Rencanakan Ibadah Qurban Tahun Ini Tanpa Terbebani Finansial Mendadak.</h2>
+                <p>Mulai nabung sedikit demi sedikit bersama warga lingkungan RT. Niat baik insyaAllah dipermudah jalannya.</p>
+            </div>
+            <div class="cta-banner-buttons">
+                <a href="<?= base_url('login') ?>" class="btn-hero-primary">
+                    <span>Mulai Menabung Sekarang</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20Pengurus%20AT-TAQWA,%20saya%20tertarik%20ikut%20tabungan%20qurban" target="_blank" rel="noopener" class="btn-hero-glass">
+                    <span>Hubungi Pengurus RT</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clean Footer -->
+    <footer class="landing-footer">
+        <div class="footer-inner">
+            <div>
+                <b>AT-TAQWA</b>. Kas Tabungan Qurban Warga Lingkungan.
+            </div>
+            <div class="footer-nav">
+                <a href="#alur">Alur Kerja</a>
+                <a href="#pilihan-hewan">Pilihan Hewan</a>
+                <a href="#faq">Tanya Jawab</a>
+                <a href="<?= base_url('login') ?>">Masuk Portal</a>
+            </div>
+            <div>
+                &copy; <?= date('Y') ?> AT-TAQWA. Dikelola bersama warga RT untuk kemaslahatan lingkungan.
+            </div>
+        </div>
     </footer>
 
+    <!-- Interactive Calculator Script -->
     <script>
+        function selectAnimal(nominal, button) {
+            document.getElementById('simTarget').value = nominal;
+            document.querySelectorAll('.animal-tab').forEach(t => t.classList.remove('active'));
+            button.classList.add('active');
+            hitungSimulasi();
+        }
+
         function hitungSimulasi() {
             let target = parseFloat(document.getElementById('simTarget').value);
             let bulan = parseFloat(document.getElementById('simBulan').value);
@@ -371,25 +417,13 @@
             
             if (bulan > 0) {
                 let nabung = Math.ceil(target / bulan);
-                // Format rupiah
-                let reverse = nabung.toString().split('').reverse().join(''),
-                    ribuan  = reverse.match(/\d{1,3}/g);
-                    ribuan  = ribuan.join('.').split('').reverse().join('');
-                
-                hasilEl.innerText = "Rp " + ribuan + " / Bulan";
+                let formatId = new Intl.NumberFormat('id-ID').format(nabung);
+                hasilEl.innerText = "Rp" + formatId + " / bulan";
             } else {
                 hasilEl.innerText = "-";
             }
         }
-        // Run once on load
         hitungSimulasi();
-        
-        // Atur layout responsive hero untuk mobile
-        if(window.innerWidth <= 768) {
-            document.querySelector('.hero > div').style.gridTemplateColumns = '1fr';
-            document.querySelector('.hero > div').style.textAlign = 'center';
-            document.querySelector('.hero-info').style.marginBottom = '30px';
-        }
     </script>
 </body>
 </html>
