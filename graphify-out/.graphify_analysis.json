@@ -1,0 +1,458 @@
+{
+  "communities": {
+    "0": [
+      "app_config_contentsecuritypolicy",
+      "app_config_contentsecuritypolicy_contentsecuritypolicy",
+      "app_config_cookie",
+      "app_config_cookie_cookie",
+      "app_config_cors",
+      "app_config_cors_cors",
+      "app_config_curlrequest",
+      "app_config_curlrequest_curlrequest",
+      "app_config_email",
+      "app_config_email_email",
+      "app_config_encryption",
+      "app_config_encryption_encryption",
+      "app_config_exceptions",
+      "app_config_exceptions_exceptions",
+      "app_config_exceptions_exceptions_handler",
+      "app_config_feature",
+      "app_config_feature_feature",
+      "app_config_format",
+      "app_config_format_format",
+      "app_config_generators",
+      "app_config_generators_generators",
+      "app_config_honeypot",
+      "app_config_honeypot_honeypot",
+      "app_config_images",
+      "app_config_images_images",
+      "app_config_migrations",
+      "app_config_migrations_migrations",
+      "app_config_pager",
+      "app_config_pager_pager",
+      "app_config_security",
+      "app_config_security_security",
+      "app_config_session",
+      "app_config_session_session",
+      "app_config_useragents",
+      "app_config_useragents_useragents",
+      "codeigniter_config_baseconfig",
+      "codeigniter_debug_exceptionhandler",
+      "codeigniter_debug_exceptionhandlerinterface",
+      "codeigniter_format_jsonformatter",
+      "codeigniter_format_xmlformatter",
+      "codeigniter_images_handlers_gdhandler",
+      "codeigniter_images_handlers_imagemagickhandler",
+      "codeigniter_session_handlers_basehandler",
+      "codeigniter_session_handlers_filehandler",
+      "datetimeinterface",
+      "psr_log_loglevel",
+      "throwable"
+    ],
+    "1": [
+      "composer",
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_config",
+      "composer_config_optimize_autoloader",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages",
+      "composer_description",
+      "composer_homepage",
+      "composer_license",
+      "composer_name",
+      "composer_psr_4_tests_support",
+      "composer_require",
+      "composer_require_codeigniter4_framework",
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_mikey179_vfsstream",
+      "composer_require_dev_phpunit_phpunit",
+      "composer_require_php",
+      "composer_scripts",
+      "composer_scripts_test",
+      "composer_support",
+      "composer_support_forum",
+      "composer_support_slack",
+      "composer_support_source",
+      "composer_type"
+    ],
+    "2": [
+      "app_config_view",
+      "app_config_view_view",
+      "app_controllers_basecontroller",
+      "app_controllers_basecontroller_basecontroller",
+      "app_controllers_basecontroller_basecontroller_initcontroller",
+      "app_controllers_home",
+      "app_controllers_home_home",
+      "app_controllers_home_home_index",
+      "codeigniter_config_view",
+      "codeigniter_controller",
+      "codeigniter_http_requestinterface",
+      "codeigniter_http_responseinterface",
+      "codeigniter_view_viewdecoratorinterface",
+      "psr_log_loggerinterface"
+    ],
+    "3": [
+      "app_config_app",
+      "app_config_app_app",
+      "codeigniter_test_ciunittestcase",
+      "tests_session_examplesessiontest",
+      "tests_session_examplesessiontest_examplesessiontest",
+      "tests_session_examplesessiontest_examplesessiontest_testsessionsimple",
+      "tests_support_libraries_configreader",
+      "tests_support_libraries_configreader_configreader",
+      "tests_support_libraries_configreader_configreader_construct",
+      "tests_unit_healthtest",
+      "tests_unit_healthtest_healthtest",
+      "tests_unit_healthtest_healthtest_testbaseurlhasbeenset",
+      "tests_unit_healthtest_healthtest_testisdefinedapppath"
+    ],
+    "4": [
+      "app_config_filters",
+      "app_config_filters_filters",
+      "codeigniter_config_filters",
+      "codeigniter_filters_cors",
+      "codeigniter_filters_csrf",
+      "codeigniter_filters_debugtoolbar",
+      "codeigniter_filters_forcehttps",
+      "codeigniter_filters_honeypot",
+      "codeigniter_filters_invalidchars",
+      "codeigniter_filters_pagecache",
+      "codeigniter_filters_performancemetrics",
+      "codeigniter_filters_secureheaders"
+    ],
+    "5": [
+      "codeigniter_database_seeder",
+      "codeigniter_model",
+      "codeigniter_test_databasetesttrait",
+      "tests_database_exampledatabasetest",
+      "tests_database_exampledatabasetest_exampledatabasetest",
+      "tests_database_exampledatabasetest_exampledatabasetest_testmodelfindall",
+      "tests_database_exampledatabasetest_exampledatabasetest_testsoftdeleteleavesrow",
+      "tests_support_database_seeds_exampleseeder",
+      "tests_support_database_seeds_exampleseeder_exampleseeder",
+      "tests_support_database_seeds_exampleseeder_exampleseeder_run",
+      "tests_support_models_examplemodel",
+      "tests_support_models_examplemodel_examplemodel"
+    ],
+    "6": [
+      "app_config_cache",
+      "app_config_cache_cache",
+      "codeigniter_cache_cacheinterface",
+      "codeigniter_cache_handlers_apcuhandler",
+      "codeigniter_cache_handlers_dummyhandler",
+      "codeigniter_cache_handlers_filehandler",
+      "codeigniter_cache_handlers_memcachedhandler",
+      "codeigniter_cache_handlers_predishandler",
+      "codeigniter_cache_handlers_redishandler",
+      "codeigniter_cache_handlers_wincachehandler"
+    ],
+    "7": [
+      "app_config_paths",
+      "app_config_paths_paths",
+      "codeigniter_boot",
+      "preload",
+      "preload_preload",
+      "preload_preload_construct",
+      "preload_preload_load",
+      "preload_preload_loadautoloader",
+      "public_index",
+      "spark"
+    ],
+    "8": [
+      "app_config_toolbar",
+      "app_config_toolbar_toolbar",
+      "codeigniter_debug_toolbar_collectors_database",
+      "codeigniter_debug_toolbar_collectors_events",
+      "codeigniter_debug_toolbar_collectors_files",
+      "codeigniter_debug_toolbar_collectors_logs",
+      "codeigniter_debug_toolbar_collectors_routes",
+      "codeigniter_debug_toolbar_collectors_timers",
+      "codeigniter_debug_toolbar_collectors_views"
+    ],
+    "9": [
+      "app_config_validation",
+      "app_config_validation_validation",
+      "codeigniter_validation_strictrules_creditcardrules",
+      "codeigniter_validation_strictrules_filerules",
+      "codeigniter_validation_strictrules_formatrules",
+      "codeigniter_validation_strictrules_rules"
+    ],
+    "10": [
+      "app_views_errors_html_debug",
+      "app_views_errors_html_debug_getfirstchildwithtagname",
+      "app_views_errors_html_debug_gethash",
+      "app_views_errors_html_debug_init",
+      "app_views_errors_html_debug_showtab",
+      "app_views_errors_html_debug_toggle"
+    ],
+    "11": [
+      "composer_autoload",
+      "composer_autoload_exclude_from_classmap",
+      "composer_autoload_psr_4",
+      "composer_psr_4_app",
+      "composer_psr_4_config",
+      "ref_database_migrations"
+    ],
+    "12": [
+      "app_config_kint",
+      "app_config_kint_kint",
+      "kint_parser_constructableplugininterface",
+      "kint_renderer_rich_tabplugininterface",
+      "kint_renderer_rich_valueplugininterface"
+    ],
+    "13": [
+      "codeigniter_database_migration",
+      "tests_support_database_migrations_2020_02_22_222222_example_migration",
+      "tests_support_database_migrations_2020_02_22_222222_example_migration_examplemigration",
+      "tests_support_database_migrations_2020_02_22_222222_example_migration_examplemigration_down",
+      "tests_support_database_migrations_2020_02_22_222222_example_migration_examplemigration_up"
+    ],
+    "14": [
+      "app_config_database",
+      "app_config_database_database",
+      "app_config_database_database_construct",
+      "codeigniter_database_config"
+    ],
+    "15": [
+      "app_config_events",
+      "codeigniter_events_events",
+      "codeigniter_exceptions_frameworkexception",
+      "codeigniter_hotreloader_hotreloader"
+    ],
+    "16": [
+      "app_config_logger",
+      "app_config_logger_logger",
+      "codeigniter_log_handlers_filehandler",
+      "codeigniter_log_handlers_handlerinterface"
+    ],
+    "17": [
+      "app_config_mimes",
+      "app_config_mimes_mimes",
+      "app_config_mimes_mimes_guessextensionfromtype",
+      "app_config_mimes_mimes_guesstypefromextension"
+    ],
+    "18": [
+      "app_config_autoload",
+      "app_config_autoload_autoload",
+      "codeigniter_config_autoloadconfig"
+    ],
+    "19": [
+      "app_config_foreigncharacters",
+      "app_config_foreigncharacters_foreigncharacters",
+      "codeigniter_config_foreigncharacters"
+    ],
+    "20": [
+      "app_config_modules",
+      "app_config_modules_modules",
+      "codeigniter_modules_modules"
+    ],
+    "21": [
+      "app_config_publisher",
+      "app_config_publisher_publisher",
+      "codeigniter_config_publisher"
+    ],
+    "22": [
+      "app_config_routing",
+      "app_config_routing_routing",
+      "codeigniter_config_routing"
+    ],
+    "23": [
+      "app_config_services",
+      "app_config_services_services",
+      "codeigniter_config_baseservice"
+    ],
+    "24": [
+      "app_views_errors_cli_error_404",
+      "app_views_errors_cli_error_exception",
+      "codeigniter_cli_cli"
+    ],
+    "25": [
+      "app_views_errors_html_error_exception",
+      "codeigniter_codeigniter",
+      "codeigniter_http_header"
+    ],
+    "26": [
+      "app_config_doctypes",
+      "app_config_doctypes_doctypes"
+    ],
+    "27": [
+      "app_config_hostnames",
+      "app_config_hostnames_hostnames"
+    ],
+    "28": [
+      "app_config_optimize",
+      "app_config_optimize_optimize"
+    ],
+    "29": [
+      "app_config_routes",
+      "codeigniter_router_routecollection"
+    ],
+    "30": [
+      "app_config_workermode",
+      "app_config_workermode_workermode"
+    ],
+    "31": [
+      "app_common"
+    ],
+    "32": [
+      "app_config_boot_development"
+    ],
+    "33": [
+      "app_config_boot_production"
+    ],
+    "34": [
+      "app_config_boot_testing"
+    ],
+    "35": [
+      "app_config_constants"
+    ],
+    "36": [
+      "app_language_en_validation"
+    ],
+    "37": [
+      "app_views_errors_cli_production"
+    ],
+    "38": [
+      "app_views_errors_html_error_400"
+    ],
+    "39": [
+      "app_views_errors_html_error_404"
+    ],
+    "40": [
+      "app_views_errors_html_production"
+    ],
+    "41": [
+      "app_views_welcome_message"
+    ],
+    "42": [
+      "builds"
+    ]
+  },
+  "cohesion": {
+    "0": 0.060129509713228495,
+    "1": 0.07692307692307693,
+    "2": 0.18681318681318682,
+    "3": 0.20512820512820512,
+    "4": 0.16666666666666666,
+    "5": 0.21212121212121213,
+    "6": 0.2,
+    "7": 0.24444444444444444,
+    "8": 0.2222222222222222,
+    "9": 0.3333333333333333,
+    "10": 0.5333333333333333,
+    "11": 0.3333333333333333,
+    "12": 0.4,
+    "13": 0.5,
+    "14": 0.6666666666666666,
+    "15": 0.5,
+    "16": 0.5,
+    "17": 0.5,
+    "18": 1.0,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 1.0,
+    "24": 0.6666666666666666,
+    "25": 0.6666666666666666,
+    "26": 1.0,
+    "27": 1.0,
+    "28": 1.0,
+    "29": 1.0,
+    "30": 1.0,
+    "31": 1.0,
+    "32": 1.0,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_config_app_app",
+      "label": "App",
+      "degree": 5
+    },
+    {
+      "id": "tests_database_exampledatabasetest_exampledatabasetest",
+      "label": "ExampleDatabaseTest",
+      "degree": 5
+    },
+    {
+      "id": "app_controllers_basecontroller_basecontroller",
+      "label": "BaseController",
+      "degree": 4
+    },
+    {
+      "id": "composer_support",
+      "label": "support",
+      "degree": 4
+    },
+    {
+      "id": "composer_require_dev",
+      "label": "require-dev",
+      "degree": 4
+    },
+    {
+      "id": "composer_config",
+      "label": "config",
+      "degree": 4
+    },
+    {
+      "id": "preload_preload",
+      "label": "preload",
+      "degree": 4
+    },
+    {
+      "id": "tests_support_database_migrations_2020_02_22_222222_example_migration_examplemigration",
+      "label": "ExampleMigration",
+      "degree": 4
+    },
+    {
+      "id": "tests_support_database_seeds_exampleseeder_exampleseeder",
+      "label": "ExampleSeeder",
+      "degree": 4
+    },
+    {
+      "id": "tests_support_libraries_configreader_configreader",
+      "label": "ConfigReader",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "ConfigReader",
+      "target": "App",
+      "source_files": [
+        "tests/_support/Libraries/ConfigReader.php",
+        "app/Config/App.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Home",
+      "target": "BaseController",
+      "source_files": [
+        "app/Controllers/Home.php",
+        "app/Controllers/BaseController.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
