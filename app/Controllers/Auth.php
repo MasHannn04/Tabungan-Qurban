@@ -38,7 +38,7 @@ class Auth extends BaseController
         }
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Masuk Sistem Tabungan Qurban",
+            'pageTitle' => "AT-TAQWA | Masuk Akun",
             'bodyClass' => "login-body",
             'errorMsg'  => $session->getFlashdata('errorMsg')
         ];

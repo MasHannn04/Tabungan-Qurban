@@ -6,86 +6,122 @@
 
 <?= $this->section('content') ?>
 <section class="screen admin-home-screen">
-  <div class="page-title">
+  <div class="page-title-wrap">
     <div>
-      <small>DASHBOARD ADMIN</small>
+      <span class="badge-role">PANEL PENGURUS</span>
       <h1>Assalamualaikum, <?= esc(explode(' ', session()->get('user_name'))[0]) ?></h1>
-      <p>Berikut beranda pengelolaan tabungan qurban warga hari ini.</p>
+      <p>Ringkasan kas, target tabungan warga, dan setoran yang butuh konfirmasi hari ini.</p>
     </div>
   </div>
 
-  <div class="metrics">
-    <article class="featured">
-      <span>Total dana terkumpul</span>
+  <div class="metrics-grid">
+    <article class="metric-card metric-primary">
+      <div class="metric-head">
+        <span>Total Dana Masuk</span>
+        <span class="metric-icon-badge">💰</span>
+      </div>
       <b>Rp<?= number_format($totalDana, 0, ',', '.') ?></b>
-      <small>Data real-time</small>
+      <small>Data terverifikasi</small>
     </article>
-    <article>
-      <span>Warga terdaftar</span>
+
+    <article class="metric-card">
+      <div class="metric-head">
+        <span>Warga Terdaftar</span>
+        <span class="metric-icon-badge">👥</span>
+      </div>
       <b><?= esc($totalWarga) ?></b>
-      <small><?= esc($wargaAktif) ?> aktif menabung</small>
+      <small><?= esc($wargaAktif) ?> warga aktif menabung</small>
     </article>
-    <article>
-      <span>Target sudah lunas</span>
+
+    <article class="metric-card">
+      <div class="metric-head">
+        <span>Target Lunas</span>
+        <span class="metric-icon-badge">🎯</span>
+      </div>
       <b><?= esc($lunas) ?></b>
       <small><?= esc($persenLunas) ?>% dari total warga</small>
     </article>
-    <article>
-      <span>Menunggu verifikasi</span>
-      <b><?= esc($pending) ?></b>
-      <small>Perlu ditinjau</small>
+
+    <article class="metric-card">
+      <div class="metric-head">
+        <span>Butuh Konfirmasi</span>
+        <span class="metric-icon-badge">⏳</span>
+      </div>
+      <b class="<?= ($pending > 0) ? 'color-pending' : '' ?>"><?= esc($pending) ?></b>
+      <small>Setoran baru masuk</small>
     </article>
   </div>
 
-  <div class="two-col admin-grid">
+  <div class="dashboard-grid">
+    <!-- Chart Column -->
     <article class="card">
-      <header class="section-head">
+      <div class="card-header">
         <div>
-          <small>PERKEMBANGAN DANA</small>
-          <h3>6 bulan terakhir</h3>
+          <span class="card-subtitle">GRAFIK AKUMULASI DANA</span>
+          <h3>Perkembangan 6 Bulan Terakhir</h3>
         </div>
-      </header>
-      <div class="chart">
-        <?php foreach ($chartData as $data): ?>
-          <div style="height:<?= $data['percent'] ?>%">
-            <i><?= esc($data['formatted']) ?></i>
-            <span><?= esc($data['label']) ?></span>
-          </div>
-        <?php endforeach; ?>
+      </div>
+      <div class="chart-container">
+        <div class="chart-bars">
+          <?php foreach ($chartData as $data): ?>
+            <div class="chart-col">
+              <div class="bar-wrap">
+                <div class="bar-fill" style="height: <?= max(8, $data['percent']) ?>%;">
+                  <span class="bar-tooltip"><?= esc($data['formatted']) ?></span>
+                </div>
+              </div>
+              <span class="bar-label"><?= esc($data['label']) ?></span>
+            </div>
+          <?php endforeach; ?>
+        </div>
       </div>
     </article>
 
+    <!-- Verification Column -->
     <article class="card">
-      <header class="section-head">
+      <div class="card-header">
         <div>
-          <small>PERLU TINDAKAN</small>
-          <h3>Verifikasi setoran</h3>
+          <span class="card-subtitle">PERLU TINDAKAN</span>
+          <h3>Konfirmasi Setoran Masuk</h3>
         </div>
-      </header>
-      <?php if (empty($verifications)): ?>
-        <p style="padding:15px; color:var(--muted); font-size:13px;">Semua setoran sudah diverifikasi.</p>
-      <?php else: ?>
-        <?php foreach ($verifications as $v): ?>
-          <?php 
-          $initials = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $v['nama_lengkap']), 0, 2)); 
-          ?>
-          <div class="verify">
-            <span class="avatar" style="width:46px; height:46px; font-size:14px;"><?= esc($initials) ?></span>
-            <span style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:0;">
-              <b style="font-size:15px; line-height:1.2;"><?= esc($v['nama_lengkap']) ?></b>
-              <small style="color:var(--muted); line-height:1.2;"><?= date('d M Y, H:i', strtotime($v['created_at'])) ?></small>
-              <small style="color:var(--green); font-weight:600; line-height:1.2;"><?= esc($v['metode']) ?></small>
-            </span>
-            <b>Rp<?= number_format($v['nominal'], 0, ',', '.') ?></b>
-          <form method="POST" action="<?= base_url('admin/verifikasi') ?>" style="margin:0; display:flex; gap:5px;">
-            <?= csrf_field() ?>
-            <input type="hidden" name="id_setoran" value="<?= esc($v['id_setoran']) ?>">
-            <button type="submit" name="action" value="verify" title="Verifikasi">✓</button>
-            <button type="submit" name="action" value="reject" class="reject" title="Tolak">✗</button>
-          </form>
+        <span class="badge-count"><?= count($verifications) ?> menunggu</span>
+      </div>
+      
+      <div class="verify-list">
+        <?php if (empty($verifications)): ?>
+          <div class="empty-state">
+            <span class="empty-icon">✓</span>
+            <p>Semua setoran warga sudah dikonfirmasi.</p>
           </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+        <?php else: ?>
+          <?php foreach ($verifications as $v): ?>
+            <?php 
+            $initials = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $v['nama_lengkap']), 0, 2)); 
+            if (empty($initials)) $initials = 'WG';
+            ?>
+            <div class="verify-item">
+              <div class="verify-avatar"><?= esc($initials) ?></div>
+              <div class="verify-meta">
+                <b><?= esc($v['nama_lengkap']) ?></b>
+                <span class="verify-detail"><?= date('d M Y, H:i', strtotime($v['created_at'])) ?> · <?= esc($v['metode']) ?></span>
+              </div>
+              <div class="verify-amount">
+                <b>Rp<?= number_format($v['nominal'], 0, ',', '.') ?></b>
+              </div>
+              <form method="POST" action="<?= base_url('admin/verifikasi') ?>" class="verify-actions">
+                <?= csrf_field() ?>
+                <input type="hidden" name="id_setoran" value="<?= esc($v['id_setoran']) ?>">
+                <button type="submit" name="action" value="verify" class="btn-verify" title="Setujui Setoran">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <button type="submit" name="action" value="reject" class="btn-reject" title="Tolak Setoran">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+              </form>
+            </div>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </div>
     </article>
   </div>
 </section>

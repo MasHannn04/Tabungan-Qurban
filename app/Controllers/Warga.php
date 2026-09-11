@@ -86,7 +86,7 @@ class Warga extends BaseController
         $notifs = $db->table('notifikasi')->where('id_user', $id_user)->orderBy('created_at', 'DESC')->limit(5)->get()->getResultArray();
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Beranda Tabungan Warga",
+            'pageTitle' => "AT-TAQWA | Tabungan Saya",
             'saldo' => $saldo,
             'target' => $target,
             'jenis_qurban' => $jenis_qurban,
@@ -117,7 +117,7 @@ class Warga extends BaseController
         $notifs = $notifModel->where('id_user', $id_user)->orderBy('created_at', 'DESC')->limit(5)->find();
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Tambah Setoran",
+            'pageTitle' => "AT-TAQWA | Tambah Setoran",
             'warga' => $warga,
             'unreadCount' => $unreadCount,
             'notifs' => $notifs,
@@ -175,7 +175,7 @@ class Warga extends BaseController
         $notifs = $notifModel->where('id_user', $id_user)->orderBy('created_at', 'DESC')->limit(5)->find();
 
         $data = [
-            'pageTitle' => "AT-TAQWA — Riwayat Setoran",
+            'pageTitle' => "AT-TAQWA | Riwayat Setoran",
             'history' => $history,
             'unreadCount' => $unreadCount,
             'notifs' => $notifs
