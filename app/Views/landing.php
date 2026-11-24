@@ -153,7 +153,7 @@
             <div class="floating-stat-item">
                 <div class="f-icon">🎯</div>
                 <div class="f-content">
-                    <b>4 Target Lunas</b>
+                    <b><?= number_format($targetLunas ?? 0, 0, ',', '.') ?> Target Lunas</b>
                     <span>Siap Disembelih</span>
                 </div>
             </div>

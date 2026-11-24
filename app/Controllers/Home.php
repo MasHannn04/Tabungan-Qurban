@@ -17,6 +17,7 @@ class Home extends BaseController
 
         // 2. Jumlah Warga (Total Terdaftar) & Total Target
         $totalWargaAll = $db->table('warga')->countAllResults();
+        $targetLunas = $db->table('warga')->where('status', 'Lunas')->countAllResults();
         $resWarga = $db->table('warga')
                        ->selectSum('target_qurban', 'total_target')
                        ->get()->getRowArray();
@@ -53,6 +54,7 @@ class Home extends BaseController
             'pageTitle' => "AT-TAQWA | Tabungan Qurban Warga",
             'totalDanaMasuk' => $totalDanaMasuk,
             'jmlWarga' => $jmlWarga,
+            'targetLunas' => $targetLunas,
             'estimasiBulanStr' => $estimasiBulanStr
         ];
 
