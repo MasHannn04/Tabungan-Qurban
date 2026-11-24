@@ -9,6 +9,15 @@ $portalLabel = ($userRole === 'admin') ? 'Pengurus Kas' : 'Warga Penabung';
 
 $unreadCount = $unreadCount ?? 0;
 $notifs = $notifs ?? [];
+
+if (empty($notifs) && $session->has('id_user')) {
+    try {
+        $db = \Config\Database::connect();
+        $notifUserId = (int)$session->get('id_user');
+        $unreadCount = $db->table('notifikasi')->where('id_user', $notifUserId)->where('is_read', 0)->countAllResults();
+        $notifs = $db->table('notifikasi')->where('id_user', $notifUserId)->orderBy('created_at', 'DESC')->limit(5)->get()->getResultArray();
+    } catch (\Throwable $e) {}
+}
 ?>
 <header class="topbar">
   <div class="topbar-left">

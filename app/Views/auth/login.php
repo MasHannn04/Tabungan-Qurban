@@ -19,7 +19,7 @@
       </div>
     <?php endif; ?>
 
-    <form action="/login/process" method="POST" class="login-form">
+    <form action="<?= base_url('login/process') ?>" method="POST" class="login-form">
       <?= csrf_field() ?>
       
       <div class="form-group">
@@ -40,21 +40,6 @@
 
       <button type="submit" class="btn-primary-block">Masuk ke Akun</button>
     </form>
-
-    <div class="login-divider">
-      <span>Akses Cepat Uji Coba</span>
-    </div>
-
-    <div class="demo-login-grid">
-      <a href="<?= base_url('login?demo=admin') ?>" class="demo-btn">
-        <span class="demo-role">Akses Pengurus</span>
-        <span class="demo-name">Pak Fauzan (Admin)</span>
-      </a>
-      <a href="<?= base_url('login?demo=warga') ?>" class="demo-btn">
-        <span class="demo-role">Akses Warga</span>
-        <span class="demo-name">Ahmad Syafi'i</span>
-      </a>
-    </div>
 
     <div class="login-footer-back">
       <a href="<?= base_url() ?>">← Kembali ke Halaman Utama</a>

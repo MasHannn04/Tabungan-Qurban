@@ -16,27 +16,6 @@ class Auth extends BaseController
             return redirect()->to('/warga');
         }
 
-        // Tangani "Demo Instant Login" dari parameter GET ?demo=...
-        $demo = $this->request->getGet('demo');
-        if ($demo === 'warga') {
-            $session->set([
-                'role' => 'warga',
-                'user_name' => "Ahmad Syafi'i",
-                'user_sub' => "Warga RT 04",
-                'id_user' => 2, // ID user untuk warga (menyesuaikan database)
-                'id_warga' => 1 // ID warga
-            ]);
-            return redirect()->to('/warga');
-        } elseif ($demo === 'admin') {
-            $session->set([
-                'role' => 'admin',
-                'user_name' => "Pak Fauzan",
-                'user_sub' => "Administrator",
-                'id_user' => 1
-            ]);
-            return redirect()->to('/admin');
-        }
-
         $data = [
             'pageTitle' => "AT-TAQWA | Masuk Akun",
             'bodyClass' => "login-body",

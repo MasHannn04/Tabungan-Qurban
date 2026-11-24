@@ -2689,10 +2689,18 @@ button, input, select, textarea {
   margin-bottom: 24px;
 }
 
+.login-logo-link {
+  display: block;
+  margin: 0 auto 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
 .login-logo {
-  height: 52px;
+  height: 56px;
   width: auto;
-  margin-bottom: 12px;
+  display: inline-block;
+  margin-bottom: 4px;
 }
 
 .login-badge {

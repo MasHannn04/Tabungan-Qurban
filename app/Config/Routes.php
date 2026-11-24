@@ -7,6 +7,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Auth::login');
 $routes->match(['get', 'post'], '/login/process', 'Auth::loginProcess');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('notifikasi/read/(:num)', 'Notifikasi::read/$1');
 
 // Group routes untuk Admin, dilindungi oleh filter 'auth' khusus role admin
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
